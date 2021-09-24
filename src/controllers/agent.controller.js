@@ -1,6 +1,6 @@
-import appIdGenerator from '../../utils/appIdGenerator.helper';
-import responseUtil from '../../utils/responseUtil';
-import { Agent } from '../models';
+import appIdGenerator from '../utils/appIdGenerator.helper';
+import responseUtil from '../utils/responseUtil';
+import { Agent, Booking, User } from '../models';
 
 const registerAgent = async (req, res) => {
   try {
@@ -13,7 +13,29 @@ const registerAgent = async (req, res) => {
   }
 };
 
+const getAgents = async (req, res) => {
+  try {
+    const agents = await Agent.find();
+    responseUtil.successResponse(res, '', agents);
+  } catch (error) {
+    responseUtil.errorResponse(error);
+  }
+};
+
+const getUsers = async (req, res) => {
+  const { agent } = req;
+  try {
+    const bookings = await Booking.find({ agent: agent.id }, { _id: 1 });
+    const users = await User.find({ _id: { $in: bookings } });
+    console.log('🚀 ~ file: agent.controller.js ~ line 31 ~ getUsers ~ users', users);
+    responseUtil.successResponse(res, '', users);
+  } catch (error) {
+    responseUtil.errorResponse(res, error, 422);
+  }
+};
+
 export default {
-  // eslint-disable-next-line import/prefer-default-export
   registerAgent,
+  getAgents,
+  getUsers,
 };

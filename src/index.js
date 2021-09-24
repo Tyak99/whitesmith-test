@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/booking', bookingRoutes);
-app.use('/api/v1/agent', agentRoutes);
+app.use('/api/v1/agents', agentRoutes);
 
 const PORT = process.env.PORT || 3000;
 
