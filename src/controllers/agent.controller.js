@@ -1,4 +1,5 @@
 import appIdGenerator from '../../utils/appIdGenerator.helper';
+import responseUtil from '../../utils/responseUtil';
 import { Agent } from '../models';
 
 const registerAgent = async (req, res) => {
@@ -6,9 +7,9 @@ const registerAgent = async (req, res) => {
     const appId = appIdGenerator();
     const data = { ...req.body, appId };
     const agent = await Agent.create(data);
-    res.json(agent);
+    responseUtil.successResponse(res, 'Created agent', agent);
   } catch (error) {
-    // console.log('🚀 ~ file: agent.controller.js ~ line 7 ~ registerAgent ~ error', error);
+    responseUtil.errorResponse(res, error);
   }
 };
 
