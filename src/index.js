@@ -1,4 +1,5 @@
 import express from 'express';
+import mongodbConnection from './models';
 
 const app = express();
 
@@ -8,4 +9,6 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.log(`server started running at port ${PORT}`));
+mongodbConnection().then(() => {
+  app.listen(PORT, () => console.log(`server started running at port ${PORT}`));
+});
