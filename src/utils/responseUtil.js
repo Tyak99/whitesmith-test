@@ -1,10 +1,10 @@
-const successResponse = (res, message, data) => {
+const successResponse = (res, message, data = null, statusCode = 200) => {
   const result = {
     status: true,
     message,
     data,
   };
-  return res.json(result);
+  return res.status(statusCode).json(result);
 };
 
 const errorResponse = (responseObject, errorObject, statusCode = 400) => {
