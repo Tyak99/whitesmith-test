@@ -15,7 +15,7 @@ const registerAgent = async (req, res) => {
 
 const getAgents = async (req, res) => {
   try {
-    const agents = await Agent.find();
+    const agents = await Agent.find({}, { appId: 0 });
     responseUtil.successResponse(res, '', agents);
   } catch (error) {
     responseUtil.errorResponse(error);
