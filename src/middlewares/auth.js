@@ -19,8 +19,8 @@ const auth = (...requiredRights) => async (req, res, next) => {
 
       if (!hasRequiredRights) throw new Error('Forbidden');
       req.agent = agent;
-      next();
     }
+    next();
   } catch (error) {
     responseUtil.errorResponse(res, error, httpStatus.FORBIDDEN);
   }
