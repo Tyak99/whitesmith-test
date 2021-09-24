@@ -22,8 +22,8 @@ const createBooking = async (req, res) => {
 
 const deleteBooking = async (req, res) => {
   try {
-    const { bookingId } = req;
-    const booking = await Booking.findOneAndDelete(bookingId);
+    const { bookingId } = req.params;
+    const booking = await Booking.findOneAndDelete({ _id: bookingId });
     if (!booking) {
       throw new Error('Unable to find booking with the provided Id');
     }
