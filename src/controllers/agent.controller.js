@@ -26,9 +26,13 @@ const getUsers = async (req, res) => {
   const { agent } = req;
   try {
     const bookings = await Booking.find({ agent: agent.id }, { _id: 1 });
-    const users = await User.find({ _id: { $in: bookings } });
-    console.log('🚀 ~ file: agent.controller.js ~ line 31 ~ getUsers ~ users', users);
-    responseUtil.successResponse(res, '', users);
+    if (bookings.length > 0) {
+      const users = await User.find({ _id: { $in: bookings } });
+      console.log('🚀 ~ file: agent.controller.js ~ line 31 ~ getUsers ~ users', users);
+      responseUtil.successResponse(res, '', users);
+    } else {
+      responseUtil.successResponse(res, '', []);
+    }
   } catch (error) {
     responseUtil.errorResponse(res, error, 422);
   }

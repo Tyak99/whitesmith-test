@@ -11,7 +11,7 @@ const createBooking = async (req, res) => {
     const { agent } = req;
     const { startAt, finishAt, user } = req.body;
 
-    const booking = Booking.create({
+    const booking = await Booking.create({
       startAt, finishAt, user, agent: agent.id,
     });
     responseUtil.successResponse(res, 'Booking created successfully', booking);
