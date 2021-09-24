@@ -1,4 +1,4 @@
-import appIdGenerator from '../utils/appIdGenerator.helper';
+import appIdGenerator from '../utils/appIdGenerator';
 import responseUtil from '../utils/responseUtil';
 import { Agent, User } from '../models';
 import seedData from '../utils/seedData';
