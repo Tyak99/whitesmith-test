@@ -3,6 +3,6 @@ import schedulerController from '../../../controllers/business/scheduler.control
 
 const router = express.Router();
 
-router.get('/', schedulerController.getSchedules);
+router.get('/scheduler', schedulerController.getSchedules);
 
 export default router;

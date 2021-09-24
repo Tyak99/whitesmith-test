@@ -1,12 +1,17 @@
 import appIdGenerator from '../utils/appIdGenerator.helper';
 import responseUtil from '../utils/responseUtil';
-import { Agent } from '../models';
+import { Agent, User } from '../models';
+import seedData from '../utils/seedData';
 
 const registerAgent = async (req, res) => {
   try {
     const appId = appIdGenerator();
     const data = { ...req.body, appId };
     const agent = await Agent.create(data);
+    const usersInDb = await User.find();
+    if (usersInDb.length < 1) {
+      seedData.insertRandomUsers();
+    }
     responseUtil.successResponse(res, 'Created agent', agent);
   } catch (error) {
     responseUtil.errorResponse(res, error);

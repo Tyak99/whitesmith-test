@@ -4,7 +4,7 @@ import agentRoutes from '../agent.route';
 
 const router = express.Router();
 
-router.use('/scheduler?week=weekdate', schedulerRoutes);
+router.use('/', schedulerRoutes);
 router.use('/agents', agentRoutes);
 
 export default router;

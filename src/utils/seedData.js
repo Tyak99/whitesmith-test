@@ -1,14 +1,15 @@
-import faker from 'faker';
-import { User } from '../models';
+const faker = require('faker');
+const { User } = require('../models');
 
 const createUser = () => ({
   name: faker.name.findName(),
   email: faker.internet.email(),
 });
-const insertRandomUsers = () => {
+
+const insertRandomUsers = async () => {
   const users = Array.from({ length: 10 }, createUser);
 
-  User.insertMany(users);
+  await User.insertMany(users);
 };
 
 export default {
