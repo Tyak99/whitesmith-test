@@ -11,4 +11,7 @@ const mongodbConnection = async () => {
 };
 
 export { default as Agent } from './agent.model';
+export { default as User } from './user.model';
+export { default as Booking } from './booking.model';
+
 export default mongodbConnection;

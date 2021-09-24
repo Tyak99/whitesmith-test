@@ -16,7 +16,7 @@ const auth = (...requiredRights) => async (req, res, next) => {
         .every((requiredRight) => agentRights.includes(requiredRight));
 
       if (!hasRequiredRights) throw new Error('Forbidden');
-
+      req.agent = agent;
       next();
     }
   } catch (error) {
