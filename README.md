@@ -10,7 +10,14 @@ npm install
 yarn
 ```
 
-Second, run the development server:
+Second, create a .env file with the content in .env.example file
+
+```bash
+touch .env
+copy content into newly created .env file
+```
+
+Third, run the development server:
 
 ```bash
 npm run start:dev
