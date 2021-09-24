@@ -15,11 +15,17 @@ const agentSchema = new Schema({
     trim: true,
     lowercase: true,
   },
+  appId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   role: {
     type: String,
     enum: roles,
     default: 'agent',
   },
+
 });
 
 export default mongoose.model('Agent', agentSchema);

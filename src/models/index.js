@@ -10,4 +10,5 @@ const mongodbConnection = async () => {
   }
 };
 
+export { default as Agent } from './agent.model';
 export default mongodbConnection;

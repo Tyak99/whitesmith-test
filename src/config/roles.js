@@ -5,8 +5,9 @@ const allRoles = {
 };
 
 const roles = Object.keys(allRoles);
+const rolesRights = new Map(Object.entries(allRoles));
 
 export {
-  // eslint-disable-next-line import/prefer-default-export
   roles,
+  rolesRights,
 };
